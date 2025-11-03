@@ -16,11 +16,7 @@ const MainMenu = () => {
   const { spawnPlayer } = useInteraction();
 
   // Debug logging
-  console.log("MainMenu state:", {
-    address,
-    isConnected,
-    hasAccount: !!account,
-  });
+  console.log("MainMenu state:", { address, isConnected, hasAccount: !!account });
 
   const [showHelpModal, setShowHelpModal] = useState(false);
   const [showCardGallery, setShowCardGallery] = useState(false);
@@ -34,12 +30,7 @@ const MainMenu = () => {
   };
 
   const handleConnect = async () => {
-    console.log(
-      "handleConnect clicked, isConnected:",
-      isConnected,
-      "address:",
-      address
-    );
+    console.log("handleConnect clicked, isConnected:", isConnected, "address:", address);
     console.log("connectors:", connectors?.length, connectors);
     if (isConnected && address) {
       console.log("Already connected, spawning player and navigating to game");
@@ -85,7 +76,10 @@ const MainMenu = () => {
   return (
     <div className="d-flex flex-column bg-menu vh-100 justify-content-center align-items-center">
       <div className="d-flex align-items-baseline mb-5">
-        <p className="font-cinzel-semibold menu-title-fs m-0">Duels-X</p>
+        <p className="font-cinzel-semibold menu-title-fs m-0">
+          Duels-X
+        </p>
+        <span className="badge bg-secondary ms-2">v0.14</span>
       </div>
 
       {/* Without the beta tag

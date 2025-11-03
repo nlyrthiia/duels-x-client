@@ -33,7 +33,6 @@ export interface Match {
 	turn: BigNumberish;
 	status: MatchStatusEnum;
 	seed: BigNumberish;
-	winner: CairoOption<string>;
 }
 
 // Type definition for `dojo_starter::models::MatchLog` struct
@@ -56,9 +55,6 @@ export interface Moves {
 export interface Player {
 	owner: string;
 	created: boolean;
-	hp: BigNumberish;
-	atk: BigNumberish;
-	def: BigNumberish;
 }
 
 // Type definition for `dojo_starter::models::Position` struct
@@ -151,7 +147,6 @@ export const schema: SchemaType = {
 				Active: undefined,
 				Ended: undefined, }),
 			seed: 0,
-			winner: new CairoOption(CairoOptionVariant.None),
 		},
 		MatchLog: {
 			match_id: 0,
@@ -168,9 +163,6 @@ export const schema: SchemaType = {
 		Player: {
 			owner: "",
 			created: false,
-			hp: 0,
-			atk: 0,
-			def: 0,
 		},
 		Position: {
 			player: "",

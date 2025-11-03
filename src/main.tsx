@@ -11,8 +11,8 @@ import { init } from "@dojoengine/sdk";
 import { DojoSdkProvider } from "@dojoengine/sdk/react";
 
 // Local imports
-import { setupWorld } from "./bindings/typescript/contracts.gen";
-import type { SchemaType } from "./bindings/typescript/models.gen";
+import { setupWorld } from "./dojo/typescript/contracts.gen";
+import type { SchemaType } from "./dojo/typescript/models.gen";
 import { dojoConfig } from "./config/dojoConfig";
 
 // App Entry

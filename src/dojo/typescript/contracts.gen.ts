@@ -70,7 +70,7 @@ export function setupWorld(provider: DojoProvider) {
       return await provider.execute(
         snAccount,
         build_arcane_game_concede_calldata(matchId),
-        "dojo_starter"
+        "dojo_starter-arcane_game"
       );
     } catch (error) {
       console.error(error);
@@ -96,7 +96,7 @@ export function setupWorld(provider: DojoProvider) {
       return await provider.execute(
         snAccount,
         build_arcane_game_endTurn_calldata(matchId),
-        "dojo_starter"
+        "dojo_starter-arcane_game"
       );
     } catch (error) {
       console.error(error);
@@ -124,7 +124,7 @@ export function setupWorld(provider: DojoProvider) {
       return await provider.execute(
         snAccount,
         build_arcane_game_playCard_calldata(matchId, handSlot),
-        "dojo_starter"
+        "dojo_starter-arcane_game"
       );
     } catch (error) {
       console.error(error);
@@ -152,7 +152,7 @@ export function setupWorld(provider: DojoProvider) {
       return await provider.execute(
         snAccount,
         build_arcane_game_setDeck_calldata(seed, cards),
-        "dojo_starter"
+        "dojo_starter-arcane_game"
       );
     } catch (error) {
       console.error(error);
@@ -201,7 +201,7 @@ export function setupWorld(provider: DojoProvider) {
       return await provider.execute(
         snAccount,
         build_arcane_game_startMatch_calldata(opponent),
-        "dojo_starter"
+        "dojo_starter-arcane_game"
       );
     } catch (error) {
       console.error(error);

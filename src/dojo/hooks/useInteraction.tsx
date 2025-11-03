@@ -12,7 +12,14 @@ const useInteraction = () => {
         toast.error("Please connect your wallet first");
         return false;
       }
-      console.log("Calling namespace:", namespace, "method:", method, "with args:", args);
+      console.log(
+        "Calling namespace:",
+        namespace,
+        "method:",
+        method,
+        "with args:",
+        args
+      );
       console.log("Client:", client);
       console.log("Client keys:", Object.keys(client || {}));
       if (!client || !client[namespace]) {
@@ -21,7 +28,10 @@ const useInteraction = () => {
         return false;
       }
       if (!client[namespace][method]) {
-        console.error("Available methods:", Object.keys(client[namespace] || {}));
+        console.error(
+          "Available methods:",
+          Object.keys(client[namespace] || {})
+        );
         toast.error(`Method ${method} not found in client.${namespace}`);
         return false;
       }
@@ -60,4 +70,3 @@ const useInteraction = () => {
 };
 
 export default useInteraction;
-

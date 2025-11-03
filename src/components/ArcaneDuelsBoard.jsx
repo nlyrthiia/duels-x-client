@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 import useAudioPlayer from "./hooks/useAudioPlayer";
 import useMusicPlayer from "./hooks/useMusicPlayer";
@@ -35,6 +36,8 @@ import PlayerHand from "./PlayerHand";
 import PlayerStats from "./PlayerStats";
 import SettingsModal from "./modals/SettingsModal";
 import BattleLog from "./BattleLog";
+import useInteraction from "../dojo/hooks/useInteraction";
+import { useAccount } from "@starknet-react/core";
 
 const ArcaneDuelsBoard = ({ ctx, G, moves, events, reset }) => {
   // Initialize Bootstrap tooltips
@@ -59,6 +62,8 @@ const ArcaneDuelsBoard = ({ ctx, G, moves, events, reset }) => {
     getMusicForLevel(G.level)
   );
   const [hoveredAvatar, setHoveredAvatar] = useState(null);
+  const { concede, endTurn, setDeck } = useInteraction();
+  const { address } = useAccount();
 
   /**
    * Plays the appropriate audio when a card is played.
@@ -163,6 +168,26 @@ const ArcaneDuelsBoard = ({ ctx, G, moves, events, reset }) => {
       if (ctx.gameover.winner !== null) {
         setWinner(ctx.gameover.winner);
       }
+      // On-chain record only at end
+      try {
+        const matchId = 0n; // Placeholder until real matchId is available
+        if (ctx.gameover.winner === "0") {
+          const ok = await endTurn(matchId);
+          ok
+            ? toast.success("Win recorded on-chain (end_turn)")
+            : toast.error("Failed to record win on-chain");
+        } else if (ctx.gameover.winner !== null) {
+          const ok = await concede(matchId);
+          ok
+            ? toast.success("Result recorded on-chain (concede)")
+            : toast.error("Failed to record result on-chain");
+        }
+      } catch (e) {
+        // Surface error but do not block UI
+        toast.error("On-chain record failed");
+        // eslint-disable-next-line no-console
+        console.error(e);
+      }
       setShowGameoverModal(true);
       pauseMusic();
       playAudio(ctx.gameover.winner === "0" ? victory : defeat);
@@ -176,6 +201,31 @@ const ArcaneDuelsBoard = ({ ctx, G, moves, events, reset }) => {
   useEffect(() => {
     handleDrawCard();
   }, [ctx.currentPlayer, ctx.gameover]);
+
+  // On game start, record deck once on-chain (seed + empty cards for now)
+  useEffect(() => {
+    const recordDeck = async () => {
+      try {
+        const seed = Date.now();
+        const cards = [];
+        const ok = await setDeck(seed, cards);
+        if (ok) {
+          toast.success("Deck recorded on-chain");
+        } else {
+          toast.error("Failed to record deck on-chain");
+        }
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+        toast.error("Deck record failed");
+      }
+    };
+    // Only attempt once when board loads and wallet is present
+    if (address) {
+      recordDeck();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [address]);
 
   useEffect(() => {
     handleAiPlayCard();

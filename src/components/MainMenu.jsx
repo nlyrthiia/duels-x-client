@@ -6,6 +6,7 @@ import CardGalleryModal from "./modals/CardGalleryModal";
 import HelpModal from "./modals/HelpModal";
 import AboutModal from "./modals/AboutModal";
 import { useAccount, useConnect } from "@starknet-react/core";
+import { toast } from "react-toastify";
 import useInteraction from "../dojo/hooks/useInteraction";
 
 const MainMenu = () => {
@@ -14,13 +15,6 @@ const MainMenu = () => {
   const { address, account, isConnected } = useAccount();
   const { connect, connectors } = useConnect();
   const { spawnPlayer } = useInteraction();
-
-  // Debug logging
-  console.log("MainMenu state:", {
-    address,
-    isConnected,
-    hasAccount: !!account,
-  });
 
   const [showHelpModal, setShowHelpModal] = useState(false);
   const [showCardGallery, setShowCardGallery] = useState(false);
@@ -47,7 +41,7 @@ const MainMenu = () => {
         const success = await spawnPlayer();
 
         if (success) {
-          console.log("Player spawned successfully, navigating to game");
+          toast.success("Player spawned successfully, navigating to game");
           window.location.href = "/game";
         } else {
           console.error("Spawn failed");

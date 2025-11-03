@@ -68,11 +68,17 @@ export function setupWorld(provider: DojoProvider) {
     matchId: BigNumberish
   ) => {
     try {
-      return await provider.execute(
-        snAccount,
-        build_arcane_game_concede_calldata(matchId),
-        "dojo_starter-arcane_game"
+      const system = manifest.contracts.find(
+        (c) => c.tag === "dojo_starter-arcane_game"
       );
+      if (!system) throw new Error("arcane_game system not found in manifest");
+      return await (snAccount as Account).execute([
+        {
+          contractAddress: system.address,
+          entrypoint: "concede",
+          calldata: [matchId],
+        },
+      ]);
     } catch (error) {
       console.error(error);
       throw error;
@@ -94,11 +100,17 @@ export function setupWorld(provider: DojoProvider) {
     matchId: BigNumberish
   ) => {
     try {
-      return await provider.execute(
-        snAccount,
-        build_arcane_game_endTurn_calldata(matchId),
-        "dojo_starter-arcane_game"
+      const system = manifest.contracts.find(
+        (c) => c.tag === "dojo_starter-arcane_game"
       );
+      if (!system) throw new Error("arcane_game system not found in manifest");
+      return await (snAccount as Account).execute([
+        {
+          contractAddress: system.address,
+          entrypoint: "end_turn",
+          calldata: [matchId],
+        },
+      ]);
     } catch (error) {
       console.error(error);
       throw error;
@@ -122,11 +134,17 @@ export function setupWorld(provider: DojoProvider) {
     handSlot: BigNumberish
   ) => {
     try {
-      return await provider.execute(
-        snAccount,
-        build_arcane_game_playCard_calldata(matchId, handSlot),
-        "dojo_starter-arcane_game"
+      const system = manifest.contracts.find(
+        (c) => c.tag === "dojo_starter-arcane_game"
       );
+      if (!system) throw new Error("arcane_game system not found in manifest");
+      return await (snAccount as Account).execute([
+        {
+          contractAddress: system.address,
+          entrypoint: "play_card",
+          calldata: [matchId, handSlot],
+        },
+      ]);
     } catch (error) {
       console.error(error);
       throw error;
@@ -150,11 +168,19 @@ export function setupWorld(provider: DojoProvider) {
     cards: Array<BigNumberish>
   ) => {
     try {
-      return await provider.execute(
-        snAccount,
-        build_arcane_game_setDeck_calldata(seed, cards),
-        "dojo_starter-arcane_game"
+      const system = manifest.contracts.find(
+        (c) => c.tag === "dojo_starter-arcane_game"
       );
+      if (!system) throw new Error("arcane_game system not found in manifest");
+      // Array calldata must be encoded as [len, ...elements]
+      const encodedCards = [BigInt(cards.length), ...cards];
+      return await (snAccount as Account).execute([
+        {
+          contractAddress: system.address,
+          entrypoint: "set_deck",
+          calldata: [seed, ...encodedCards],
+        },
+      ]);
     } catch (error) {
       console.error(error);
       throw error;
@@ -208,11 +234,17 @@ export function setupWorld(provider: DojoProvider) {
     opponent: string
   ) => {
     try {
-      return await provider.execute(
-        snAccount,
-        build_arcane_game_startMatch_calldata(opponent),
-        "dojo_starter-arcane_game"
+      const system = manifest.contracts.find(
+        (c) => c.tag === "dojo_starter-arcane_game"
       );
+      if (!system) throw new Error("arcane_game system not found in manifest");
+      return await (snAccount as Account).execute([
+        {
+          contractAddress: system.address,
+          entrypoint: "start_match",
+          calldata: [opponent],
+        },
+      ]);
     } catch (error) {
       console.error(error);
       throw error;

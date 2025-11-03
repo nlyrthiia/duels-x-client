@@ -1,6 +1,4 @@
-// @ts-nocheck
-import { DojoProvider } from "@dojoengine/core";
-import type { DojoCall } from "@dojoengine/core";
+import { DojoProvider, type DojoCall } from "@dojoengine/core";
 import { Account, AccountInterface, CairoCustomEnum } from "starknet";
 import type { BigNumberish } from "starknet";
 

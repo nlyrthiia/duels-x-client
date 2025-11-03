@@ -18,8 +18,7 @@ const manifests = {
 const deployType = import.meta.env.VITE_PUBLIC_DEPLOY_TYPE as string;
 
 // Export the appropriate manifest with a fallback
-export const manifest = deployType in manifests
-  ? manifests[deployType as DeployType]
-  : sepolia; // Default to sepolia for production
+export const manifest =
+  deployType in manifests ? manifests[deployType as DeployType] : sepolia; // Default to sepolia for production
 
 export type Manifest = typeof manifest;

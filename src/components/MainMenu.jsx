@@ -45,7 +45,6 @@ const MainMenu = () => {
       console.log("Already connected, spawning player and navigating to game");
       try {
         const success = await spawnPlayer();
-        window.location.href = "/game";
 
         if (success) {
           console.log("Player spawned successfully, navigating to game");

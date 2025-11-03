@@ -2,6 +2,7 @@
 import { DojoProvider } from "@dojoengine/core";
 import type { DojoCall } from "@dojoengine/core";
 import { Account, AccountInterface, CairoCustomEnum } from "starknet";
+import { manifest } from "../../config/manifest";
 import type { BigNumberish } from "starknet";
 
 export function setupWorld(provider: DojoProvider) {
@@ -172,11 +173,20 @@ export function setupWorld(provider: DojoProvider) {
     snAccount: Account | AccountInterface
   ) => {
     try {
-      return await provider.execute(
-        snAccount,
-        build_arcane_game_spawnPlayer_calldata(),
-        "dojo_starter"
+      const system = manifest.contracts.find(
+        (c) => c.tag === "dojo_starter-arcane_game"
       );
+      if (!system) {
+        throw new Error("arcane_game system not found in manifest");
+      }
+      // Direct call via account to avoid ABI lookup path
+      return await (snAccount as Account).execute([
+        {
+          contractAddress: system.address,
+          entrypoint: "spawn_player",
+          calldata: [],
+        },
+      ]);
     } catch (error) {
       console.error(error);
       throw error;

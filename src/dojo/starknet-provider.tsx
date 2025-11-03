@@ -9,7 +9,9 @@ import {
 import cartridgeConnector from "../config/cartridgeConnector";
 
 // Select RPC and chain based on VITE_PUBLIC_DEPLOY_TYPE to match cartridgeConnector
-const { VITE_PUBLIC_DEPLOY_TYPE } = import.meta.env as { VITE_PUBLIC_DEPLOY_TYPE?: string };
+const { VITE_PUBLIC_DEPLOY_TYPE } = import.meta.env as {
+  VITE_PUBLIC_DEPLOY_TYPE?: string;
+};
 
 const getRpcUrl = (): string => {
   switch (VITE_PUBLIC_DEPLOY_TYPE) {
@@ -24,20 +26,16 @@ const getRpcUrl = (): string => {
 };
 
 const rpcUrl = getRpcUrl();
+console.log(rpcUrl, "rpcUrl");
 
 // When localhost, we expose a custom Katana chain so StarknetConfig matches the connector
-const katanaChain: Chain = {
+const katanaChain: any = {
   id: BigInt("0x4b4154414e41"), // "KATANA"
   name: "Katana",
   network: "localhost",
   rpcUrls: {
     default: { http: [rpcUrl] },
     public: { http: [rpcUrl] },
-  },
-  nativeCurrency: {
-    name: "Starknet",
-    symbol: "STRK",
-    decimals: 18,
   },
 };
 

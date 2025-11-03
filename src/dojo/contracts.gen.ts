@@ -17,7 +17,7 @@ export function setupWorld(provider: DojoProvider) {
 	const actions_move = async (snAccount: Account | AccountInterface, direction: CairoCustomEnum) => {
 		try {
 			return await provider.execute(
-				snAccount,
+				snAccount as any,
 				build_actions_move_calldata(direction),
 				"dojo_starter",
 			);
@@ -38,7 +38,7 @@ export function setupWorld(provider: DojoProvider) {
 	const actions_spawn = async (snAccount: Account | AccountInterface) => {
 		try {
 			return await provider.execute(
-				snAccount,
+				snAccount as any,
 				build_actions_spawn_calldata(),
 				"dojo_starter",
 			);
@@ -59,7 +59,7 @@ export function setupWorld(provider: DojoProvider) {
 	const arcane_game_concede = async (snAccount: Account | AccountInterface, matchId: BigNumberish) => {
 		try {
 			return await provider.execute(
-				snAccount,
+				snAccount as any,
 				build_arcane_game_concede_calldata(matchId),
 				"dojo_starter",
 			);
@@ -80,7 +80,7 @@ export function setupWorld(provider: DojoProvider) {
 	const arcane_game_endTurn = async (snAccount: Account | AccountInterface, matchId: BigNumberish) => {
 		try {
 			return await provider.execute(
-				snAccount,
+				snAccount as any,
 				build_arcane_game_endTurn_calldata(matchId),
 				"dojo_starter",
 			);
@@ -101,7 +101,7 @@ export function setupWorld(provider: DojoProvider) {
 	const arcane_game_playCard = async (snAccount: Account | AccountInterface, matchId: BigNumberish, handSlot: BigNumberish) => {
 		try {
 			return await provider.execute(
-				snAccount,
+				snAccount as any,
 				build_arcane_game_playCard_calldata(matchId, handSlot),
 				"dojo_starter",
 			);
@@ -122,7 +122,7 @@ export function setupWorld(provider: DojoProvider) {
 	const arcane_game_setDeck = async (snAccount: Account | AccountInterface, seed: BigNumberish, cards: Array<BigNumberish>) => {
 		try {
 			return await provider.execute(
-				snAccount,
+				snAccount as any,
 				build_arcane_game_setDeck_calldata(seed, cards),
 				"dojo_starter",
 			);
@@ -143,7 +143,7 @@ export function setupWorld(provider: DojoProvider) {
 	const arcane_game_spawnPlayer = async (snAccount: Account | AccountInterface) => {
 		try {
 			return await provider.execute(
-				snAccount,
+				snAccount as any,
 				build_arcane_game_spawnPlayer_calldata(),
 				"dojo_starter",
 			);
@@ -164,7 +164,7 @@ export function setupWorld(provider: DojoProvider) {
 	const arcane_game_startMatch = async (snAccount: Account | AccountInterface, opponent: string) => {
 		try {
 			return await provider.execute(
-				snAccount,
+				snAccount as any,
 				build_arcane_game_startMatch_calldata(opponent),
 				"dojo_starter",
 			);

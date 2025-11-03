@@ -1,6 +1,7 @@
 import type { SchemaType as ISchemaType } from "@dojoengine/sdk";
 
-import { CairoCustomEnum, CairoOption, CairoOptionVariant, BigNumberish } from 'starknet';
+import { CairoCustomEnum, CairoOption, CairoOptionVariant } from 'starknet';
+import type { BigNumberish } from 'starknet';
 
 // Type definition for `dojo_starter::models::DeckEntry` struct
 export interface DeckEntry {

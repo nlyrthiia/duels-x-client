@@ -20,8 +20,6 @@ const useInteraction = () => {
         "with args:",
         args
       );
-      console.log("Client:", client);
-      console.log("Client keys:", Object.keys(client || {}));
       if (!client || !client[namespace]) {
         console.error("Available namespaces:", Object.keys(client || {}));
         toast.error(`Namespace ${namespace} not found in client`);

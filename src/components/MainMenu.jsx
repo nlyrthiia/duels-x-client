@@ -28,13 +28,6 @@ const MainMenu = () => {
   };
 
   const handleConnect = async () => {
-    console.log(
-      "handleConnect clicked, isConnected:",
-      isConnected,
-      "address:",
-      address
-    );
-    console.log("connectors:", connectors?.length, connectors);
     if (isConnected && address) {
       console.log("Already connected, spawning player and navigating to game");
       try {
@@ -57,7 +50,6 @@ const MainMenu = () => {
         return;
       }
       const connector = connectors[0];
-      console.log("Using connector:", connector);
       await connect({ connector });
     }
   };

@@ -6,12 +6,6 @@ import { manifest } from "./manifest";
 
 const { VITE_PUBLIC_DEPLOY_TYPE } = import.meta.env;
 
-console.log("🔧 DuelsX Environment Configuration:", {
-  deployType: VITE_PUBLIC_DEPLOY_TYPE,
-  manifestLoaded: !!manifest,
-  contractsInManifest: manifest?.contracts?.length || 0,
-});
-
 const getRpcUrl = () => {
   switch (VITE_PUBLIC_DEPLOY_TYPE) {
     case "localhost":
@@ -57,10 +51,6 @@ const getGameContractAddress = () => {
 let CONTRACT_ADDRESS_GAME: string;
 try {
   CONTRACT_ADDRESS_GAME = getGameContractAddress();
-  console.log(
-    "✅ Using DuelsX arcane_game contract address:",
-    CONTRACT_ADDRESS_GAME
-  );
 } catch (error) {
   console.error("❌ Failed to get game contract address:", error);
   // Fallback - will cause issues but allows app to load

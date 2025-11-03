@@ -1,7 +1,7 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { createRoot } from "react-dom/client";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 // Starknet
 import StarknetProvider from "./dojo/starknet-provider";
@@ -35,18 +35,14 @@ async function main() {
     domain: {
       name: "DuelsX",
       version: "1.0",
-      chainId: "KATANA", // or "SN_MAIN", "SN_SEPOLIA", "KATANA"
+      chainId: "SN_SEPOLIA", // or "SN_MAIN", "SN_SEPOLIA", "KATANA"
       revision: "1",
     },
   });
 
   createRoot(document.getElementById("root")!).render(
     <StarknetProvider>
-      <DojoSdkProvider
-        sdk={sdk}
-        dojoConfig={dojoConfig}
-        clientFn={setupWorld}
-      >
+      <DojoSdkProvider sdk={sdk} dojoConfig={dojoConfig} clientFn={setupWorld}>
         <App />
         <ToastContainer />
       </DojoSdkProvider>

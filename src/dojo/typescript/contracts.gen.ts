@@ -175,7 +175,7 @@ export function setupWorld(provider: DojoProvider) {
       return await provider.execute(
         snAccount,
         build_arcane_game_spawnPlayer_calldata(),
-        "dojo_starter-arcane_game"
+        "dojo_starter"
       );
     } catch (error) {
       console.error(error);

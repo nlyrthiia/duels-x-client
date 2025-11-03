@@ -16,4 +16,3 @@ export const dojoConfig = createDojoConfig({
   rpcUrl: VITE_PUBLIC_NODE_URL || "",
   toriiUrl: VITE_PUBLIC_TORII || "",
 });
-

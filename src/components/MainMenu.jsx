@@ -77,13 +77,13 @@ const MainMenu = () => {
     <div className="d-flex flex-column bg-menu vh-100 justify-content-center align-items-center">
       <div className="d-flex align-items-baseline mb-5">
         <p className="font-cinzel-semibold menu-title-fs m-0">
-          Arcane Duels: Mystic Clash
+          Duels-X
         </p>
         <span className="badge bg-secondary ms-2">v0.14</span>
       </div>
 
       {/* Without the beta tag
-      <p className='font-cinzel-semibold menu-title-fs mb-5'>Arcane Duels: Mystic Clash</p> */}
+      <p className='font-cinzel-semibold menu-title-fs mb-5'>Duels-X</p> */}
 
       <div className="d-flex flex-column mt-5">
         {isConnected ? (

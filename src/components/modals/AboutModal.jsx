@@ -7,7 +7,7 @@ const AboutModal = ({ showAboutModal, setShowAboutModal, playAudio }) => {
     playAudio();
   };
 
-  const aboutContent = `# Arcane Duels: Mystic Clash
+  const aboutContent = `# Duels-X
 
 A turn-based card game where players engage in magical duels using a variety of spells and effects.
 
